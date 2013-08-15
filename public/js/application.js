@@ -4,16 +4,18 @@ $(document).ready(function () {
     e.preventDefault();
     var eventData = $(this).serialize();
 
-    $.ajax({
+    var request = $.ajax({
       type: this.method,
       url: this.action,
       data: eventData
-    }).done(function(response) {
-      console.log("Response:", response);
+    });
+
+    request.done(function(response) {
       window.location=response;
-    }).fail(function(jqXHR, textStatus, error) {
-      console.log("Error:", jqXHR.responseText);
-      $("#errors").html(jqXHR.responseText);
+    });
+
+    request.fail(function(response) {
+      $("#errors").html(response.responseText);
     });
   });
 
