@@ -12,4 +12,7 @@ configure do
   set :views, File.join(Sinatra::Application.root, "app", "views")
 end
 
+logger = Logger.new("log/app.log")
+use Rack::CommonLogger, logger
+
 run Sinatra::Application
